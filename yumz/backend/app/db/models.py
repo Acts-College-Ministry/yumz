@@ -11,6 +11,9 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     location = Column(String)
 
+    likes = relationship("Like", back_populates= "user")
+   
+
 
 class Like(Base):
     __tablename__ = "like"

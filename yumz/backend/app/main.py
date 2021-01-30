@@ -3,6 +3,7 @@ from starlette.requests import Request
 
 from .matches.matcher import Matcher
 from .db import models,sql
+from .api_v0.users.routes import router as users_router
 
 
 models.Base.metadata.create_all(bind=sql.engine)
@@ -39,3 +40,10 @@ async def like(request: Request, name: str):
 async def about():
 	return {"message": "this is the about page."}
 
+
+
+app.include_router(
+    users_router,
+    prefix="/api/v0",
+    tags=["users"]
+)
