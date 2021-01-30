@@ -1,5 +1,8 @@
+import datetime
+
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship, scoped_session
+
 from .sql import Base
 
 
@@ -10,15 +13,17 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     location = Column(String)
+    created = Column(DateTime, default = datetime.datetime.utcnow)
 
     likes = relationship("Like", back_populates= "user")
+
    
 
 
 class Like(Base):
     __tablename__ = "like"
     id = Column(Integer, primary_key=True)
-    user_id = Column(String, ForeignKey("user.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("user.id"), nullable=False)
 
     user = relationship("User", back_populates="likes")
 
