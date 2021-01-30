@@ -16,6 +16,7 @@ class User(Base):
     created = Column(DateTime, default = datetime.datetime.utcnow)
 
     likes = relationship("Like", back_populates= "user")
+    category_likes = relationship("LikeCategory", back_populates= "user")
 
    
 
@@ -24,6 +25,7 @@ class Like(Base):
     __tablename__ = "like"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("user.id"), nullable=False)
+    created = Column(DateTime, default = datetime.datetime.utcnow)
 
     user = relationship("User", back_populates="likes")
 
