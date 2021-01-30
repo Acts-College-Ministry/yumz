@@ -12,3 +12,16 @@ app = FastAPI(
 @app.get("/hello")
 async def hello(request: Request):
     return {"message": "Hello World"}
+
+@app.get("/")
+async def home()
+	return {"message": "landing page"}
+
+@app.get("/match")
+async def match()
+	return {"tinder": "baby"}
+
+@app.get("/about")
+async def about():
+	return {"message": "this is the about page."}
+
