@@ -1,12 +1,17 @@
 from fastapi import FastAPI
 from starlette.requests import Request
 
+from .matches.matcher import Matcher
+
 app = FastAPI(
     title="yumz API",
     version="v1.0-beta",
     redoc_url="/docs",
     docs_url="/",
 )
+
+
+matcher = Matcher()
 
 
 @app.get("/hello")
@@ -20,6 +25,11 @@ async def home():
 @app.get("/match")
 async def match():
 	return {"tinder": "baby"}
+
+@app.get("/like")
+async def like(request: Request, name: str):
+    matcher.like(name)
+    return {"liked": name}
 
 @app.get("/about")
 async def about():
