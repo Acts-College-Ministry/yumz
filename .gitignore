@@ -130,14 +130,14 @@ dmypy.json
 
 # Node modules dependencies
 /yumz/frontend/node_modules
-/.pnp
+/yumz/frontend/.pnp
 .pnp.js
 
 # testing
-/coverage
+/yumz/frontend/coverage
 
 # production
-/build
+/yumz/frontend/build
 
 # misc
 .DS_Store
