@@ -14,11 +14,11 @@ async def hello(request: Request):
     return {"message": "Hello World"}
 
 @app.get("/")
-async def home()
+async def home():
 	return {"message": "landing page"}
 
 @app.get("/match")
-async def match()
+async def match():
 	return {"tinder": "baby"}
 
 @app.get("/about")
