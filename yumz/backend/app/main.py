@@ -2,6 +2,10 @@ from fastapi import FastAPI
 from starlette.requests import Request
 
 from .matches.matcher import Matcher
+from .db import models,sql
+
+
+models.Base.metadata.create_all(bind=sql.engine)
 
 app = FastAPI(
     title="yumz API",
