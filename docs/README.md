@@ -5,7 +5,7 @@ Match with a yummy smol biz 😋
 
 Inspired by  ✨Lucy✨
 
-Made by love by:
+Made with lots of love by:
 
 * Corey
 * Patrick
