@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Node modules dependencies
-/node_modules
+/yumz/frontend/node_modules
 /.pnp
 .pnp.js
 
