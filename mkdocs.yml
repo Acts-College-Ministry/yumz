@@ -1,0 +1,15 @@
+site_name: yumz docs
+site_url: https://docs.yumz.tisuela.com/
+
+repo_url: https://github.com/Acts-College-Ministry/yumz
+repo_name: Acts-College-Ministry/yumz
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: pink
+
+markdown_extensions:
+  - pymdownx.tabbed
+  - pymdownx.superfences
