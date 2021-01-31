@@ -10,7 +10,7 @@ import * as ROUTES from '../../constants/routes';
 
 const HomePage = (props) => {
   const [location, setLocation] = useState('');
-  const [id, setID] = useState(null);
+  const [id, setID] = useState('');
   const [yelp, setYelp] = useState({});
   const [recommendation, setRecommendation] = useState(false);
 
@@ -18,35 +18,50 @@ const HomePage = (props) => {
     props.history.push(ROUTES.ABOUT);
     event.preventDefault();
   }
+
+  const handleLocation = (location) => {
+    setLocation(location);
+  }
+  const handleID = (id) => {
+    setID(id);
+  }
+  const handleYelp = (yelpData) => {
+    setYelp(yelpData);
+  }
   return (
     <React.Fragment>
 
 
       {
-        (id===null)
-        &&
-        (!recommendation)
+        (location.length===0)
         &&
         <Location
-          setLocation={setLocation}
+          location={location}
+          id={id}
+          yelp={yelp}
+          handleLocation={handleLocation}
+          handleID={handleID}
+          handleYelp={handleYelp}
         />
       }
       {
-        (id!==null)
+        (location.length!==0)
         &&
         (!recommendation)
         &&
         <Swipe
+          id={id}
+          yelp={yelp}
           location={location}
           setRecommendation={setRecommendation}
         />
       }
       {
-        (id!==null)
+        (id!=='')
         &&
         (recommendation)
         &&
-        <Recommendation 
+        <Recommendation
           setLocation={setLocation}
           setID={setID}
           setRecommendation={setRecommendation}

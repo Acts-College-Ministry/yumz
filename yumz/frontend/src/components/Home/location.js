@@ -5,38 +5,62 @@ import { YELP_GET_URL, USER_CREATE_URL } from '../../constants/api';
 import request from 'superagent';
 
 const LocationBase = (props) => {
-  const [locationInput, setLocationInput] = useState('');
+  const [click, setClick] = useState(false);
+  const [submit, setSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [loadingYelp, setLoadingYelp] = useState(false);
+  const [errorYelp, setErrorYelp] = useState(false);
+
+  const [locationInput, setLocationInput] = useState('');
   const [id, setID] = useState('');
+  const [yelp, setYelp] = useState({});
+
+  const onChange = (event) => {
+    event.preventDefault();
+    setLocationInput(event.target.value);
+  }
+
+  const onClick = (event) => {
+    event.preventDefault();
+    setClick(true);
+  }
+
+  useEffect(() => {
+    console.log("yelp data in")
+    console.log(yelp);
+    props.handleLocation(locationInput);
+    props.handleID(id);
+    props.handleYelp(yelp);
+  }, [yelp]
+  );
 
   const onRequestYelp = useCallback(
-      () => {
-        setLoading(true);
+      (url) => {
+        setLoadingYelp(true);
         request
-        .get(`${YELP_GET_URL}?location=${props.location}`)
+        .get(url)
           .then(response => {
-            setLoading(false);
-            props.setYelp(response.body.items);
+            setLoadingYelp(false);
+            setYelp(response.body)
           })
           .catch(error => {
-            setLoading(false);
-            setError(error);
+            setLoadingYelp(false);
+            setErrorYelp(error);
           });
       },
-      [loading, error]
+      [setLoadingYelp, setErrorYelp]
     );
 
-    useEffect(() => {
-      onRequestYelp();
-      }, [id]
-    );
-  
-  const onChange = (event) => {
-    setLocationInput(event.target.value);
-    props.setLocation(event.target.value);
-  }
-  
+  useEffect(() => {
+    console.log(id);
+    let url = YELP_GET_URL+'?location='+locationInput;
+    if (locationInput!=='') {
+      onRequestYelp(url);
+    }
+  }, [id]
+
+  );
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -46,16 +70,17 @@ const LocationBase = (props) => {
         .send({location:locationInput})
         .then(response => {
           setLoading(false);
-          console.log(response.body);
+          //props.handleID(response.body.id);
           setID(response.body.id);
-          console.log(id);
+          setSubmit(true);
+          console.log(response.body);
         })
         .catch(error => {
           setLoading(false);
           setError(error);
         });
     },
-    [setLoading, setError, setID]
+    [setLoading, setError, setClick]
   );
 
   return (
@@ -66,7 +91,7 @@ const LocationBase = (props) => {
               variant="outlined"
               value={locationInput}
               type="text"
-              onChange={onChange}
+              onChange={(event) => onChange(event)}
               //InputProps={{ className: classes.input }}
               //className={classes.textfield}
           />
@@ -74,7 +99,8 @@ const LocationBase = (props) => {
               variant="outlined"
               color="primary"
               type="submit"
-              disabled={(locationInput.length == 0)}
+              disabled={((locationInput==='') || submit)}
+              //onClick={onClick}
               //className={classes.submitButton}
           >
           Enter

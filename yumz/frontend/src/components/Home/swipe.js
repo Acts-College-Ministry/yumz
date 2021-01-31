@@ -1,13 +1,30 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { makeStyles, Button, TextField } from '@material-ui/core';
 
 import request from 'superagent';
 
 import { YELP_GET_URL, LIKES_CREATE_URL } from '../../constants/api';
 
+const useStyles = makeStyles((theme) => ({
+	picture: {
+		backgroundColor:"#456784",
+		position:"absolute",
+		top:0,
+		bottom:0,
+		left:0,
+		right:0,
+		marginTop: 70,
+		marginBottom: 55,
+		marginLeft: 5,
+		marginRight: 5,
+		height:"auto",
+		width:"auto",
+    }
+}));
+
 const SwipeBase = (props) => {
     const MAX_SWIPES = 15;
-    const [swipes, setSwipes] = useState(0);
+    const [swipes, setSwipes] = useState(0.0);
     const [button, setButton] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -26,17 +43,32 @@ const SwipeBase = (props) => {
         props.setRecommend(true);
     }
 
+    useEffect(() => {
+        if (swipes<=MAX_SWIPES) {
+            if (button==='like') {
+                onSwipe();
+                console.log('liked');
+            } else if (button==='dislike') {
+                console.log('disliked');
+            }
+        }
+        return() => {
+            setButton('');
+            setSwipes(swipes+1);
+        }
+    }, [button, swipes]
+    );
+
     const onSwipe = useCallback(
-      (event) => {
-        event.preventDefault();
-        setSwipes(swipes+1);
+      () => {
         setLoading(true);
         const likesMessage = {
-            user_id:'i',
-            liked_image:"kk",
-            liked_business_id:"ll",
-            liked_category_title:"ll"
+            user_id:props.id.toString(),
+            liked_image:props.yelp[swipes].photos[0],
+            liked_business_id:props.yelp[swipes].id,
+            liked_category_title:props.yelp[swipes].categories[0].title
         };
+        console.log(likesMessage);
         request
           .post(LIKES_CREATE_URL)
           .send(likesMessage)
@@ -49,42 +81,46 @@ const SwipeBase = (props) => {
             setError(error);
           });
       },
-      [setSwipes, setLoading, setError]
+      [ setLoading, setError]
     );
 
     return (
         <React.Fragment>
-            <form onSubmit={(event)=>(button==='like') ? onSwipe(event) : null}>
-            <Button
-                variant="outlined"
-                color="primary"
-                type="submit"
-                name="like"
-                onClick={onClickLike}
-                //className={classes.submitButton}
-            >
-                Yum
-            </Button>
-            <Button
-                variant="outlined"
-                color="primary"
-                type="submit"
-                name="dislike"
-                onClick={onClickDislike}
-                //className={classes.submitButton}
-            >
-                Nah
-            </Button>
-                </form>
+            <img
+                src={props.yelp[swipes].photos[0]}
+                alt={props.yelp[swipes].categories[0].title}
+            />
+            <form>
                 <Button
                     variant="outlined"
                     color="primary"
                     type="submit"
-                    onClick={onClick}
-                    disabled={swipes!==MAX_SWIPES}
+                    name="dislike"
+                    onClick={onClickDislike}
+                    //className={classes.submitButton}
                 >
-                    Recommend a restuarant!
+                    Nah
                 </Button>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    type="submit"
+                    name="like"
+                    onClick={onClickLike}
+                    //className={classes.submitButton}
+                >
+                    Yum
+                </Button>
+            </form>
+            <Button
+                variant="outlined"
+                color="primary"
+                type="submit"
+                onClick={onClick}
+                disabled={swipes!==MAX_SWIPES}
+            >
+                Recommend a restuarant!
+            </Button>
         </React.Fragment>
     )
 }

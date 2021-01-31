@@ -19,7 +19,7 @@ const RecommendationBase = (props) => {
               onClick={onClick}
               //className={classes.submitButton}
             >
-            Try Again!
+            Swipe Again!
             </Button>
         </React.Fragment>
     )
