@@ -10,46 +10,60 @@ import * as ROUTES from '../../constants/routes';
 
 const HomePage = (props) => {
   const [location, setLocation] = useState('');
-  const [submit, setSubmit] = useState(false);
+  const [id, setID] = useState('');
+  const [yelp, setYelp] = useState({});
   const [recommendation, setRecommendation] = useState(false);
 
   const onClick = (event) => {
     props.history.push(ROUTES.ABOUT);
     event.preventDefault();
   }
+
+  const handleLocation = (location) => {
+    setLocation(location);
+  }
+  const handleID = (id) => {
+    setID(id);
+  }
+  const handleYelp = (yelpData) => {
+    setYelp(yelpData);
+  }
   return (
     <React.Fragment>
 
 
       {
-        (location === '')
-        &&
-        (!submit)
-        &&
-        (!recommendation)
+        (location.length===0)
         &&
         <Location
-          setLocation={setLocation}
-          setSubmit={setSubmit}
+          location={location}
+          id={id}
+          yelp={yelp}
+          handleLocation={handleLocation}
+          handleID={handleID}
+          handleYelp={handleYelp}
         />
       }
       {
-        (submit)
+        (location.length!==0)
         &&
         (!recommendation)
         &&
         <Swipe
+          id={id}
+          yelp={yelp}
+          location={location}
           setRecommendation={setRecommendation}
         />
       }
       {
-        (submit)
+        (id!=='')
         &&
         (recommendation)
         &&
-        <Recommendation 
+        <Recommendation
           setLocation={setLocation}
-          setSubmit={setSubmit}
+          setID={setID}
           setRecommendation={setRecommendation}
         />
       }
