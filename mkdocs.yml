@@ -4,12 +4,34 @@ site_url: https://docs.yumz.tisuela.com/
 repo_url: https://github.com/Acts-College-Ministry/yumz
 repo_name: Acts-College-Ministry/yumz
 
+edit_uri: edit/main/docs/
+
 theme:
   name: material
+  favicon: images/yumz_icon.jpg
+  logo: images/yumz_icon.jpg
+  icon:
+    repo: fontawesome/brands/github
   palette:
     scheme: slate
     primary: pink
 
 markdown_extensions:
+  - admonition
   - pymdownx.tabbed
   - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.snippets:
+      base_path: docs/
+
+
+
+copyright: Copyright &copy; 2021 Bois in Acts
+
+extra_css:
+  - css/termynal.css
+
+extra_javascript:
+  - js/termynal.js
+  - js/forms.js
+  - js/custom.js

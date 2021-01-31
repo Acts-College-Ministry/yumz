@@ -6,7 +6,7 @@ name: yumz
 on:
   push:
     branches:
-      - main
+      - not-any-more-lol
 
 defaults:
   run:

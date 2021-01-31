@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 
 import Location from './location';
 import Swipe from './swipe';
