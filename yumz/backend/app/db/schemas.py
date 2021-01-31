@@ -37,21 +37,28 @@ class Like(LikeBase):
 class BusinessBase(BaseModel):
     id: str
     name: str
-    url: str
+    url: HttpUrl
+
+    phone: str
+    is_closed: bool = False
+    rating: float
 
 class BusinessCreate(BusinessBase):
 
     class Config:
         orm_mode=True
 
-class Business(BusinessBase):
-    likes: List[Like] = []
 
-    class Config:
-        orm_mode=True
 
 class CategoryBase(BaseModel):
     title: str
+
+
+class Business(BusinessBase):
+    likes: List[Like]
+
+    class Config:
+        orm_mode=True
 
 class CategoryCreate(CategoryBase):
 

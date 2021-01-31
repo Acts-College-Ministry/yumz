@@ -52,6 +52,9 @@ def create_business(db: Session, business: schemas.BusinessCreate):
         id = business.id,
         name = business.name,
         url = business.url,
+        phone = business.phone,
+        is_closed = business.is_closed,
+        rating = business.rating,
     )
 
     db.add(db_business)
@@ -66,6 +69,9 @@ def create_or_get_business(db: Session, business: schemas.BusinessCreate):
         id = business.id,
         name = business.name,
         url = business.url,
+        phone = business.phone,
+        is_closed = business.is_closed,
+        rating = business.rating,
     )
 
     return business
@@ -92,7 +98,7 @@ def create_or_get_category(db: Session, category: schemas.CategoryCreate):
     category = get_or_create(
         db, 
         models.Category, 
-        title = category.title
+        title = category.title,
     )
 
     return category

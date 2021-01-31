@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
+from sqlalchemy import Boolean, Column, ForeignKey, ARRAY, Integer,Float, String, DateTime
 from sqlalchemy.orm import relationship, scoped_session
 
 from .sql import Base
@@ -23,6 +23,10 @@ class Business(Base):
     id = Column(String, primary_key=True)
     name = Column(String, nullable=True)
     url = Column(String, nullable=False)
+    phone = Column(String, nullable = True)
+    is_closed = Column(Boolean, nullable=True)
+    rating = Column(Float, nullable = True)
+
 
     likes = relationship("Like")
 
@@ -30,6 +34,7 @@ class Category(Base):
     __tablename__ = "category"
 
     title = Column(String, primary_key=True)
+
     likes = relationship("Like")
 
 

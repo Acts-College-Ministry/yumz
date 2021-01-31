@@ -13,8 +13,6 @@ from .yelp.routes import router as yelp_router
 models.Base.metadata.create_all(bind=sql.engine)
 
 
-
-
 app = FastAPI(
     title="yumz API",
     version="v1.0-beta",
@@ -24,25 +22,10 @@ app = FastAPI(
 
 
 
-
-
 @app.get("/hello")
 async def hello(request: Request):
     return {"message": "Hello World"}
 
-@app.get("/")
-async def home():
-	return {"message": "landing page"}
-
-
-@app.get("/like")
-async def like(request: Request, name: str):
-    matcher.like(name)
-    return {"liked": name}
-
-@app.get("/about")
-async def about():
-	return {"message": "this is the about page."}
 
 
 
@@ -51,6 +34,20 @@ app.include_router(
     prefix="/api/v0/users",
     tags=["users"]
 )
+
+app.include_router(
+    yelp_router,
+    prefix="/yelp",
+    tags=["yelp"]
+)
+
+
+app.include_router(
+    likes_router,
+    prefix="/api/v0/likes",
+    tags=["likes"]
+)
+
 
 app.include_router(
     businesses_router,
@@ -64,14 +61,3 @@ app.include_router(
     tags=["categories"]
 )
 
-app.include_router(
-    likes_router,
-    prefix="/api/v0/likes",
-    tags=["likes"]
-)
-
-app.include_router(
-    yelp_router,
-    prefix="/yelp",
-    tags=["yelp"]
-)

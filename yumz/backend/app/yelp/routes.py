@@ -1,5 +1,6 @@
 # yelp wrapper routes live here!
 from typing import List, Optional
+import random
 
 from fastapi import Depends, APIRouter, Query, Request
 from sqlalchemy.orm import Session
@@ -22,17 +23,20 @@ def get_db():
         db.close()
 
 
-@router.get("/search")
+@router.get("/search", response_model = List[yelpSchemas.Business])
 async def search(request: Request,
     location: str,
     categories: Optional[str] = None, 
     db: Session = Depends(get_db)
     ):
 
-    result = initQuery(location)
+    results = initQuery(location)["search"]["business"]
+
+    # shuffle! everyone do the shuffle!
+    random.shuffle(results)
     
     # parse json results into yelp schema
-    parsed_result = parse_obj_as(List[yelpSchemas.Business], result["search"]["business"])
+    parsed_result = parse_obj_as(List[yelpSchemas.Business], results)
 
     # create businesses / categories if they do not exist
     for business in parsed_result:
@@ -45,6 +49,7 @@ async def search(request: Request,
 
             # parse yelp category to our category
             parsed_category = schemas.CategoryCreate.parse_obj(category)
+            print("wassup", parsed_category)
             crud.create_or_get_category(db, parsed_category)
         
 
