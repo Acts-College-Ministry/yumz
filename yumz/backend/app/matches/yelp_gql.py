@@ -48,7 +48,6 @@ def photos(result):
 	for b in businesses:
 		print(b['photos'][0])
 
-initQuery("SAn jose")
 
 """
 #unused
