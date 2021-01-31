@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+defaults:
+  run:
+    working-directory: ./yumz/frontend
+
 jobs:
   build:
 
@@ -32,7 +36,6 @@ jobs:
       
     
     - name: Build
-      working-directory: ./yumz/frontend
       run: npm run build
 
       
