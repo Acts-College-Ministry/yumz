@@ -12,7 +12,7 @@ from .api_v0.likes.routes import router as likes_router
 
 models.Base.metadata.create_all(bind=sql.engine)
 
-from .matches.yelp_gql import initQuery, photos
+
 
 
 app = FastAPI(
@@ -23,7 +23,7 @@ app = FastAPI(
 )
 
 
-matcher = Matcher()
+
 
 
 @app.get("/hello")
@@ -34,10 +34,6 @@ async def hello(request: Request):
 async def home():
 	return {"message": "landing page"}
 
-@app.get("/match")
-async def match(request: Request, loc: str):
-    result = initQuery(loc)
-    return result
 
 @app.get("/like")
 async def like(request: Request, name: str):
