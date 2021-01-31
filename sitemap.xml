@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://docs.yumz.tisuela.com/</loc>
+     <lastmod>2021-01-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.yumz.tisuela.com/Back-end/Intro/</loc>
+     <lastmod>2021-01-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.yumz.tisuela.com/Back-end/run_locally/</loc>
+     <lastmod>2021-01-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.yumz.tisuela.com/Front-end/intro/</loc>
+     <lastmod>2021-01-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.yumz.tisuela.com/Front-end/run_locally/</loc>
+     <lastmod>2021-01-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>
