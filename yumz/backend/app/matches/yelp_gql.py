@@ -48,6 +48,9 @@ def photos(result):
 	for b in businesses:
 		print(b['photos'][0])
 
+if __name__=="__main__":
+	print(initQuery(input("Enter Location: ")))
+
 
 """
 #unused
