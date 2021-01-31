@@ -3,17 +3,17 @@ from typing import List
 from pydantic import BaseModel, HttpUrl
 
 
-class YelpCategory(BaseModel):
+class Category(BaseModel):
     title: str = "Vietnamese"
     alias: str = "vietnamese"
 
 
-class YelpBusiness(BaseModel):
+class Business(BaseModel):
     id: str = "abcdef"
     name: str = "alPHObet soup"
     url: HttpUrl
     photos: List[HttpUrl]
-    categories: List[YelpCategory]
+    categories: List[Category]
 
     phone: str
     is_closed: bool = False

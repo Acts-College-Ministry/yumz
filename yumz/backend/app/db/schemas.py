@@ -17,7 +17,7 @@ class LikeBase(BaseModel):
     user_id: int = 316
     liked_image: HttpUrl
     liked_business_id: str
-    liked_category_name: str
+    liked_category_title: str
 
     
 
@@ -51,7 +51,7 @@ class Business(BusinessBase):
         orm_mode=True
 
 class CategoryBase(BaseModel):
-    name: str
+    title: str
 
 class CategoryCreate(CategoryBase):
 

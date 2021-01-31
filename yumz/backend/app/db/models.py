@@ -29,7 +29,7 @@ class Business(Base):
 class Category(Base):
     __tablename__ = "category"
 
-    name = Column(String, primary_key=True)
+    title = Column(String, primary_key=True)
     likes = relationship("Like")
 
 
@@ -41,7 +41,7 @@ class Like(Base):
     # all likes are based on an image & business
     liked_image = Column(String, nullable = False)
     liked_business_id = Column(String, ForeignKey("business.id"), nullable=False)
-    liked_category_name = Column(String, ForeignKey("category.name"), nullable=False)
+    liked_category_title = Column(String, ForeignKey("category.title"), nullable=False)
 
     created = Column(DateTime, default = datetime.datetime.utcnow)
 
