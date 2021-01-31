@@ -1,11 +1,25 @@
+import { Button } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 
-const HomePage = (props) => {
-  const [buttonClicked, setButtonClicked] = useState(true);
+import * as ROUTES from '../../constants/routes';
 
+const HomePage = (props) => {
+  //const [buttonClicked, setButtonClicked] = useState(true);
+  const onClick = (event) => {
+    props.history.push(ROUTES.ABOUT);
+    event.preventDefault();
+    //console.log("printed");
+  }
   return (
     <React.Fragment>
-      This is the home page.
+      <Button
+        variant="outlined"
+        color="primary"
+        type="submit"
+        onClick={onClick}
+      >
+        About Us
+      </Button>
     </React.Fragment>
   )
 }
