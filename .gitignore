@@ -1,5 +1,6 @@
 # our stuff
 db.*
+.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -155,3 +156,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintcache
+yumz/backend/.env

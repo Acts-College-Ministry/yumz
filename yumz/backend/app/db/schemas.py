@@ -17,7 +17,7 @@ class LikeBase(BaseModel):
     user_id: int = 316
     liked_image: HttpUrl
     liked_business_id: str
-    liked_category_name: str
+    liked_category_title: str
 
     
 
@@ -37,21 +37,28 @@ class Like(LikeBase):
 class BusinessBase(BaseModel):
     id: str
     name: str
-    url: str
+    url: HttpUrl
+
+    phone: str
+    is_closed: bool = False
+    rating: float
 
 class BusinessCreate(BusinessBase):
 
     class Config:
         orm_mode=True
 
+
+
+class CategoryBase(BaseModel):
+    title: str
+
+
 class Business(BusinessBase):
-    likes: List[Like] = []
+    likes: List[Like]
 
     class Config:
         orm_mode=True
-
-class CategoryBase(BaseModel):
-    name: str
 
 class CategoryCreate(CategoryBase):
 

@@ -2,6 +2,24 @@ from sqlalchemy.orm import Session
 
 from . import models, schemas
 
+# utility functions
+
+def get_or_create(db: Session, model, **kwargs):
+    '''
+    Create obj if it does not exist
+    return it.
+    '''
+    instance = db.query(model).filter_by(**kwargs).first()
+    if instance:
+        return instance
+    else:
+        print("creating...")
+        instance = model(**kwargs)
+        db.add(instance)
+        db.commit()
+        return instance
+
+
 # Users CRUD
 
 def create_user(db: Session, user: schemas.UserCreate):
@@ -34,12 +52,29 @@ def create_business(db: Session, business: schemas.BusinessCreate):
         id = business.id,
         name = business.name,
         url = business.url,
+        phone = business.phone,
+        is_closed = business.is_closed,
+        rating = business.rating,
     )
 
     db.add(db_business)
     db.commit()
     db.refresh(db_business)
     return db_business
+
+def create_or_get_business(db: Session, business: schemas.BusinessCreate):
+    business = get_or_create(
+        db, 
+        models.Business, 
+        id = business.id,
+        name = business.name,
+        url = business.url,
+        phone = business.phone,
+        is_closed = business.is_closed,
+        rating = business.rating,
+    )
+
+    return business
 
 
 def get_businesses(db: Session, limit: int = 100):
@@ -51,13 +86,22 @@ def get_businesses(db: Session, limit: int = 100):
 
 def create_category(db: Session, category: schemas.CategoryCreate):
     db_category = models.Category(
-        name = category.name,
+        title = category.title,
     )
 
     db.add(db_category)
     db.commit()
     db.refresh(db_category)
     return db_category
+
+def create_or_get_category(db: Session, category: schemas.CategoryCreate):
+    category = get_or_create(
+        db, 
+        models.Category, 
+        title = category.title,
+    )
+
+    return category
 
 def get_categories(db: Session, limit: int = 100):
     categories = db.query(models.Category).limit(limit).all()
@@ -72,7 +116,7 @@ def create_like(db: Session, like: schemas.LikeCreate):
         user_id = like.user_id,
         liked_image = like.liked_image,
         liked_business_id = like.liked_business_id,
-        liked_category_name = like.liked_category_name,
+        liked_category_title = like.liked_category_title,
     )
 
     db.add(db_like)

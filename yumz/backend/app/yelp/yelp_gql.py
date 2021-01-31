@@ -22,18 +22,18 @@ def initQuery(loc):
 	client = clientSetup()
 	# Provide a GraphQL query
 	query = gql ("""{
-		search (location: "%s", term: "food") {
+		search (location: "%s", term: "food", limit: 40) {
 			business{
 				name
 				id
 				categories {
 					title
-					alias
 				}
 				is_closed
 				phone
 				rating
 				photos
+				url
 			}
 		}
 	}
