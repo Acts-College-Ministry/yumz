@@ -5,7 +5,6 @@ from pydantic import BaseModel, HttpUrl
 
 class Category(BaseModel):
     title: str = "Vietnamese"
-    alias: str = "vietnamese"
 
 
 class Business(BaseModel):
