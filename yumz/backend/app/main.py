@@ -2,7 +2,18 @@ from fastapi import FastAPI
 from starlette.requests import Request
 
 from .matches.matcher import Matcher
+
+from .db import models,sql
+from .api_v0.users.routes import router as users_router
+from .api_v0.businesses.routes import router as businesses_router
+from .api_v0.categories.routes import router as categories_router
+from .api_v0.likes.routes import router as likes_router
+
+
+models.Base.metadata.create_all(bind=sql.engine)
+
 from .matches.yelp_gql import initQuery, photos
+
 
 app = FastAPI(
     title="yumz API",
@@ -37,3 +48,28 @@ async def like(request: Request, name: str):
 async def about():
 	return {"message": "this is the about page."}
 
+
+
+app.include_router(
+    users_router,
+    prefix="/api/v0/users",
+    tags=["users"]
+)
+
+app.include_router(
+    businesses_router,
+    prefix="/api/v0/businesses",
+    tags=["businesses"]
+)
+
+app.include_router(
+    categories_router,
+    prefix="/api/v0/categories",
+    tags=["categories"]
+)
+
+app.include_router(
+    likes_router,
+    prefix="/api/v0/likes",
+    tags=["likes"]
+)
