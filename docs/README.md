@@ -1,6 +1,4 @@
-# yumz
-
-Match with a yummy smol biz 😋 with yumz. 
+![header](https://github.com/Acts-College-Ministry/yumz/blob/main/docs/images/yumz_header.png?raw=true)
 
 🤔 Have you ever had a hard time deciding where to eat? 
 
