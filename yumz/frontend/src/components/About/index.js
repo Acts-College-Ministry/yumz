@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core';
 import { Card, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors';
@@ -15,12 +14,25 @@ const useStyles = makeStyles({
 });
 
 const AboutPage = (props) => {
-  const [buttonClicked, setButtonClicked] = useState(true); //I have no idea what this is for -Patrick
+  const [buttonClicked, setButtonClicked] = useState(true);
+
+  const onClick = (event) => {
+    props.history.push(ROUTES.HOME);
+    event.preventDefault();
+  }
 
   const classes = useStyles();
   
   return (
     <React.Fragment>
+      <Button
+        variant="outlined"
+        color="primary"
+        type="submit"
+        onClick={onClick}
+      >
+        Back
+      </Button>
       <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '15vh'}}>
         <h1> 
           Who We Are
