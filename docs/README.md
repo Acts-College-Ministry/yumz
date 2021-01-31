@@ -37,6 +37,8 @@ You can reach our REST API [here](https://api.yumz.tisuela.com/)
 
 ### 🌟 [Front-end](https://yumz.netlify.app/)
 
+You can reach our React app [here](https://yumz.netlify.app/)
+
 * Framework/Library: [React.js](https://reactjs.org/)
 * Hosting: [Netfly](https://www.netlify.com/)
 
