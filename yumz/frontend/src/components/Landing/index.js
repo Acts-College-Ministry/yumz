@@ -67,7 +67,7 @@ export default function LandingPage() {
 				<Card className={classes.root}>
 			    	<CardContent style={{backgroundColor: "pink"}} className={classes.nopad}>
 			        	<Typography variant="h3">
-			          	Click to Begin
+			          	Wanna Eat?
 			        	</Typography>
 			      	</CardContent>
 			    </Card>
