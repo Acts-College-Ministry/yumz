@@ -25,12 +25,15 @@ Made with lots of love by:
 
 ### ⛏ [Back-end](https://api.yumz.tisuela.com/)
 
+You can reach our REST API [here](https://api.yumz.tisuela.com/)
+
 * Framework: [FastAPI](https://fastapi.tiangolo.com/)
 * Database: [SQLite](https://www.sqlite.org/index.html)
 * Database API: [SQLAlchemy](https://www.sqlalchemy.org/)
 * Hosting: [Amazon Web Services EC2](https://aws.amazon.com/ec2/)
 * Web Server: [NGINX](https://www.nginx.com/)
 * Resources: [Yelp Fusion](https://www.yelp.com/fusion) ([GraphQL Endpoint](https://www.yelp.com/developers/graphql/guides/intro))
+
 
 ### 🌟 [Front-end](https://yumz.netlify.app/)
 
