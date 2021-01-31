@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SwipeBase = (props) => {
-    const MAX_SWIPES = 15;
+    const MAX_SWIPES = 5;
     const [swipes, setSwipes] = useState(0.0);
     const [button, setButton] = useState('');
     const [loading, setLoading] = useState(false);
@@ -45,13 +45,14 @@ const SwipeBase = (props) => {
     const onClick = (event) => {
         event.preventDefault();
         setSwipes(0);
-        props.setRecommend(true);
+        props.handleRecommendation(true);
     }
 
     useEffect(() => {
         if (swipes<=MAX_SWIPES) {
             if (button==='like') {
                 onSwipe();
+                props.handleLikes(swipes);
                 console.log('liked');
             } else if (button==='dislike') {
                 console.log('disliked');
@@ -71,8 +72,15 @@ const SwipeBase = (props) => {
         setPictureDesc(props.yelp[swipes].categories[0].title);
         return() => {
             setButton('');
-        }
+        }, []
     })
+
+    useEffect(() => {
+        if (swipes===MAX_SWIPES) {
+          props.handleRecommendation(true);
+        }
+      }, [swipes]
+      );
 
     const onSwipe = useCallback(
       () => {

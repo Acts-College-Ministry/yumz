@@ -59,8 +59,8 @@ const LocationBase = (props) => {
       onRequestYelp(url);
     }
   }, [id]
-
   );
+
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
