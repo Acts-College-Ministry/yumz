@@ -32,7 +32,7 @@ jobs:
       
     
     - name: Build
-      working-directory: ./frontend
+      working-directory: ./yumz/frontend
       run: npm run build
 
       
