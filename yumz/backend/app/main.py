@@ -8,7 +8,7 @@ from .api_v0.users.routes import router as users_router
 from .api_v0.businesses.routes import router as businesses_router
 from .api_v0.categories.routes import router as categories_router
 from .api_v0.likes.routes import router as likes_router
-
+from .yelp.routes import router as yelp_router
 
 models.Base.metadata.create_all(bind=sql.engine)
 
@@ -68,4 +68,10 @@ app.include_router(
     likes_router,
     prefix="/api/v0/likes",
     tags=["likes"]
+)
+
+app.include_router(
+    yelp_router,
+    prefix="/yelp",
+    tags=["yelp"]
 )

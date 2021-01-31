@@ -34,6 +34,7 @@ def initQuery(loc):
 				phone
 				rating
 				photos
+				url
 			}
 		}
 	}
