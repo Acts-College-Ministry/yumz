@@ -4,6 +4,8 @@ site_url: https://docs.yumz.tisuela.com/
 repo_url: https://github.com/Acts-College-Ministry/yumz
 repo_name: Acts-College-Ministry/yumz
 
+edit_uri: edit/main/docs/
+
 theme:
   name: material
   favicon: images/yumz_icon.jpg
