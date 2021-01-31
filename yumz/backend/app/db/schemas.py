@@ -1,7 +1,7 @@
 import datetime
 from typing import List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 
 class UserBase(BaseModel):
     location: str = "Irvine"
@@ -15,6 +15,10 @@ class UserCreate(UserBase):
 
 class LikeBase(BaseModel):
     user_id: int = 316
+    liked_image: HttpUrl
+    liked_business_id: str
+    liked_category_name: str
+
     
 
 class LikeCreate(LikeBase):
@@ -32,26 +36,40 @@ class Like(LikeBase):
     class Config:
         orm_mode = True
 
+class BusinessBase(BaseModel):
+    id: str
+    name: str
+    url: str
 
-class LikeCategoryCreate(LikeBase):
-    category: str = "Mexican"
-
-    class Config:
-        orm_mode = True
-
-
-class LikeCategory(Like):
-    category: str = "Mexican"
+class BusinessCreate(BusinessBase):
 
     class Config:
-        orm_mode = True
+        orm_mode=True
 
+class Business(BusinessBase):
+    likes: List[Like] = []
+
+    class Config:
+        orm_mode=True
+
+class CategoryBase(BaseModel):
+    name: str
+
+class CategoryCreate(CategoryBase):
+
+    class Config:
+        orm_mode=True
+
+class Category(CategoryBase):
+    likes: List[Like] = []
+    
+    class Config:
+        orm_mode=True
 
 class User(UserBase):
     id: int = 316
     created: datetime.datetime = None
     likes: List[Like] = []
-    category_likes: List[LikeCategory] = []
 
     class Config:
         orm_mode = True
