@@ -4,7 +4,7 @@ import { Button, TextField } from '@material-ui/core';
 const SwipeBase = (props) => {
     const MAXSWIPES = 15;
     const [swipes, setSwipes] = useState(0);
-4
+
     const onClick = (event) => {
         if (swipes === MAXSWIPES-1) {
             //send stuff to api and write to user
@@ -15,6 +15,8 @@ const SwipeBase = (props) => {
         }
         event.preventDefault();
     }
+
+
     return (
         <React.Fragment>
             <Button

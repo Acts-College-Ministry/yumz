@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 const SessionContext = React.createContext(null);
 
 const withSession = Component => {
-    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+
+        console.log(sessionStorage.getItem('user'));
+        const user = JSON.parse(sessionStorage.getItem("user"));
 
     return (
-    <SessionContext.Consumer value={{ user: [user, setUser] }}>
-        <Component {...props}/>
+    <SessionContext.Consumer value={user}>
+        <Component />
     </SessionContext.Consumer>)
 }
 
