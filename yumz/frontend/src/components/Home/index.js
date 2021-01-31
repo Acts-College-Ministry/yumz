@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import Location from './location';
 import Swipe from './swipe';
 import Recommendation from './recommendation';
+import withSession from './session';
 
 import * as ROUTES from '../../constants/routes';
 
