@@ -1,5 +1,7 @@
-import { Button } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
+import { Button } from '@material-ui/core';
+
+import Location from './location';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -8,10 +10,10 @@ const HomePage = (props) => {
   const onClick = (event) => {
     props.history.push(ROUTES.ABOUT);
     event.preventDefault();
-    //console.log("printed");
   }
   return (
     <React.Fragment>
+      <Location />
       <Button
         variant="outlined"
         color="primary"
