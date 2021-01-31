@@ -29,11 +29,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      run: npm install
+      run: |
+      cd frontend
+      npm install
       
     
     - name: Build
-      run: npm run build
+      run: |
+      cd frontend
+      npm run build
       
     - name: Deploy
       run:  |
