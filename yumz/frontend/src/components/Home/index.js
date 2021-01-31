@@ -38,52 +38,56 @@ const handleLikes = (newLike) => {
 
   return (
     <React.Fragment>
-      {
-        (location.length===0)
-        &&
-        <Location
-          location={location}
-          id={id}
-          yelp={yelp}
-          handleLocation={handleLocation}
-          handleID={handleID}
-          handleYelp={handleYelp}
-        />
-      }
-      {
-        (location.length!==0)
-        &&
-        (!recommendation)
-        &&
-        <Swipe
-          id={id}
-          yelp={yelp}
-          location={location}
-          handleLikes={handleLikes}
-          handleRecommendation={handleRecommendation}
-        />
-      }
-      {
-        (location.length!==0)
-        &&
-        (recommendation)
-        &&
-        <Recommendation
-          yelp={yelp}
-          likes={likes}
-          handleLocation={handleLocation}
-          handleID={handleID}
-          handletRecommendation={handleRecommendation}
-        />
-      }
-      <Button
-        variant="outlined"
-        color="primary"
-        type="submit"
-        onClick={onClick}
-      >
-        About Us
-      </Button>
+    <div style={{backgroundColor: "#ffabc1"}}>
+      <Grid container direction="column" alignItems="center" justify="center" style={{ minHeight: '100vh' }}>
+          {
+            (location.length===0)
+            &&
+            <Location
+              location={location}
+              id={id}
+              yelp={yelp}
+              handleLocation={handleLocation}
+              handleID={handleID}
+              handleYelp={handleYelp}
+            />
+          }
+          {
+            (location.length!==0)
+            &&
+            (!recommendation)
+            &&
+            <Swipe
+              id={id}
+              yelp={yelp}
+              location={location}
+              handleLikes={handleLikes}
+              handleRecommendation={handleRecommendation}
+            />
+          }
+          {
+            (location.length!==0)
+            &&
+            (recommendation)
+            &&
+            <Recommendation
+              yelp={yelp}
+              likes={likes}
+              handleLocation={handleLocation}
+              handleID={handleID}
+              handletRecommendation={handleRecommendation}
+            />
+          }
+          <Button
+            variant="outlined"
+            color="primary"
+            type="submit"
+            onClick={onClick}
+          >
+            About Us
+          </Button>
+        </Grid>
+      </div>
     </React.Fragment>
   )
 }
