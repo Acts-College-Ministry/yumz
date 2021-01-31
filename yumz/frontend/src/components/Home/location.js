@@ -99,6 +99,7 @@ const LocationBase = (props) => {
               variant="outlined"
               color="primary"
               type="submit"
+              align="center"
               disabled={((locationInput==='') || submit)}
               //onClick={onClick}
               //className={classes.submitButton}
