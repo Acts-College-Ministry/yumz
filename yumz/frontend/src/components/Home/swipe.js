@@ -28,14 +28,19 @@ const SwipeBase = (props) => {
     const [button, setButton] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [loadingPicture, setLoadingPicture] = useState(true);
+    const [pictureUrl, setPictureUrl] = useState('');
+    const [pictureDesc, setPictureDesc] = useState('');
 
     const onClickLike = (event) => {
         event.preventDefault();
         setButton('like');
+        setLoadingPicture(true);
     }
     const onClickDislike = (event) => {
         event.preventDefault();
         setButton('dislike');
+        setLoadingPicture(true);
     }
     const onClick = (event) => {
         event.preventDefault();
@@ -55,9 +60,19 @@ const SwipeBase = (props) => {
         return() => {
             setButton('');
             setSwipes(swipes+1);
+            setPictureUrl(props.yelp[swipes].photos[0]);
+            setPictureDesc(props.yelp[swipes].categories[0].title);
         }
     }, [button, swipes]
     );
+
+    useEffect(() => {
+        setPictureUrl(props.yelp[swipes].photos[0]);
+        setPictureDesc(props.yelp[swipes].categories[0].title);
+        return() => {
+            setButton('');
+        }
+    })
 
     const onSwipe = useCallback(
       () => {
@@ -87,8 +102,9 @@ const SwipeBase = (props) => {
     return (
         <React.Fragment>
             <img
-                src={props.yelp[swipes].photos[0]}
-                alt={props.yelp[swipes].categories[0].title}
+                src={pictureUrl}
+                alt={pictureDesc}
+                onLoad={(() => setLoadingPicture(false))}
             />
             <form>
                 <Button
@@ -97,6 +113,7 @@ const SwipeBase = (props) => {
                     type="submit"
                     name="dislike"
                     onClick={onClickDislike}
+                    disabled={(swipes>=MAX_SWIPES)||(swipes>=props.yelp.length)||(loadingPicture)}
                     //className={classes.submitButton}
                 >
                     Nah
@@ -107,6 +124,7 @@ const SwipeBase = (props) => {
                     type="submit"
                     name="like"
                     onClick={onClickLike}
+                    disabled={(swipes>=MAX_SWIPES)||(swipes>=props.yelp.length)||(loadingPicture)}
                     //className={classes.submitButton}
                 >
                     Yum
