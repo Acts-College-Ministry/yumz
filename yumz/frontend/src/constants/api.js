@@ -1,5 +1,3 @@
-import request from 'superagent';
-
 const API = 'https://api.yumz.tisuela.com/';
 const API_USER_CREATE = 'api/v0/users/create';
 const API_YELP_GET = 'yelp/search';

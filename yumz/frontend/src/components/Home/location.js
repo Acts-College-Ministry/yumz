@@ -1,36 +1,42 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import { Button, TextField } from '@material-ui/core';
 
-import { USER_CREATE_URL } from '../API';
+import { YELP_GET_URL, USER_CREATE_URL } from '../../constants/api';
 import request from 'superagent';
-
-const createUser = (lc, setID) => {
-
-  request
-      .post(USER_CREATE_URL)
-      .send({location:lc})
-      .set('Access-Control-Allow-Origin', '*')
-      //.withCredentials()
-      .set('accept', 'json')
-      .end((err,res) => {
-          if (!err) {
-              console.log(res.body);
-              setID(res.body.id)
-              } 
-          }
-      );
-
-}
 
 const LocationBase = (props) => {
   const [locationInput, setLocationInput] = useState('');
-  const [id, setID] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [id, setID] = useState('');
+
+  const onRequestYelp = useCallback(
+      () => {
+        setLoading(true);
+        request
+        .get(`${YELP_GET_URL}?location=${props.location}`)
+          .then(response => {
+            setLoading(false);
+            props.setYelp(response.body.items);
+          })
+          .catch(error => {
+            setLoading(false);
+            setError(error);
+          });
+      },
+      [loading, error]
+    );
+
+    useEffect(() => {
+      onRequestYelp();
+      }, [id]
+    );
   
   const onChange = (event) => {
     setLocationInput(event.target.value);
+    props.setLocation(event.target.value);
   }
+  
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -42,13 +48,14 @@ const LocationBase = (props) => {
           setLoading(false);
           console.log(response.body);
           setID(response.body.id);
-          props.setSubmit(true);
+          console.log(id);
         })
         .catch(error => {
           setLoading(false);
           setError(error);
         });
-    }
+    },
+    [setLoading, setError, setID]
   );
 
   return (

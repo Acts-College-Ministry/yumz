@@ -3,8 +3,8 @@ import { Button, TextField } from '@material-ui/core';
 
 const RecommendationBase = (props) => {
     const onClick = (event) => {
-        props.setLocation('');
-        props.setSubmit(false);
+        props.setLocation(null);
+        props.setID(null);
         props.setRecommendation(false);
         event.preventDefault();
     }

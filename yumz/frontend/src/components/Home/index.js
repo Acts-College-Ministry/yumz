@@ -10,7 +10,8 @@ import * as ROUTES from '../../constants/routes';
 
 const HomePage = (props) => {
   const [location, setLocation] = useState('');
-  const [submit, setSubmit] = useState(false);
+  const [id, setID] = useState(null);
+  const [yelp, setYelp] = useState({});
   const [recommendation, setRecommendation] = useState(false);
 
   const onClick = (event) => {
@@ -22,34 +23,32 @@ const HomePage = (props) => {
 
 
       {
-        (location === '')
-        &&
-        (!submit)
+        (id===null)
         &&
         (!recommendation)
         &&
         <Location
           setLocation={setLocation}
-          setSubmit={setSubmit}
         />
       }
       {
-        (submit)
+        (id!==null)
         &&
         (!recommendation)
         &&
         <Swipe
+          location={location}
           setRecommendation={setRecommendation}
         />
       }
       {
-        (submit)
+        (id!==null)
         &&
         (recommendation)
         &&
         <Recommendation 
           setLocation={setLocation}
-          setSubmit={setSubmit}
+          setID={setID}
           setRecommendation={setRecommendation}
         />
       }
