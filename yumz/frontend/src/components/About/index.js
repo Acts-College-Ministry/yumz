@@ -40,7 +40,7 @@ const AboutPage = (props) => {
       </div>
       <div style={{justifyContent:'center', alignItems:'center'}}>
         <Typography align='center'>
-          We are 4 college boys that love to code! 
+          We are 4 hungry college boys that love to code! 
           Big shoutout to our friend, Lucy Yang, for giving us the idea
           to create a swiping app to help decide where to eat. 
         </Typography>
