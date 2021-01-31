@@ -12,6 +12,7 @@ const HomePage = (props) => {
   const [location, setLocation] = useState('');
   const [id, setID] = useState('');
   const [yelp, setYelp] = useState({});
+  const [likes, setLikes] = useState([]);
   const [recommendation, setRecommendation] = useState(false);
 
   const onClick = (event) => {
@@ -28,10 +29,15 @@ const HomePage = (props) => {
   const handleYelp = (yelpData) => {
     setYelp(yelpData);
   }
+  const handleRecommendation = (recommendation) => {
+    setRecommendation(recommendation);
+  }
+const handleLikes = (newLike) => {
+  setLikes([...likes, newLike]);
+}
+
   return (
     <React.Fragment>
-
-
       {
         (location.length===0)
         &&
@@ -53,18 +59,21 @@ const HomePage = (props) => {
           id={id}
           yelp={yelp}
           location={location}
-          setRecommendation={setRecommendation}
+          handleLikes={handleLikes}
+          handleRecommendation={handleRecommendation}
         />
       }
       {
-        (id!=='')
+        (location.length!==0)
         &&
         (recommendation)
         &&
         <Recommendation
-          setLocation={setLocation}
-          setID={setID}
-          setRecommendation={setRecommendation}
+          yelp={yelp}
+          likes={likes}
+          handleLocation={handleLocation}
+          handleID={handleID}
+          handletRecommendation={handleRecommendation}
         />
       }
       <Button

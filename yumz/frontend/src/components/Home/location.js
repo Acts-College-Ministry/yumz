@@ -59,8 +59,8 @@ const LocationBase = (props) => {
       onRequestYelp(url);
     }
   }, [id]
-
   );
+
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -95,16 +95,6 @@ const LocationBase = (props) => {
               //InputProps={{ className: classes.input }}
               //className={classes.textfield}
           />
-          <Button
-              variant="outlined"
-              color="primary"
-              type="submit"
-              disabled={((locationInput==='') || submit)}
-              //onClick={onClick}
-              //className={classes.submitButton}
-          >
-          Enter
-          </Button>
       </form>
     </React.Fragment>
   )
