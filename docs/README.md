@@ -1,4 +1,4 @@
-![header](https://github.com/Acts-College-Ministry/yumz/blob/main/docs/images/yumz_header.png?raw=true)
+[![header](https://github.com/Acts-College-Ministry/yumz/blob/main/docs/images/yumz_header.png?raw=true)](https://docs.yumz.tisuela.com/)
 
 🤔 Have you ever had a hard time deciding where to eat? 
 
@@ -23,7 +23,7 @@ Made with lots of love by:
 
 ## What we're made of
 
-### ⛏ Back-end
+### ⛏ [Back-end](https://api.yumz.tisuela.com/)
 
 * Framework: [FastAPI](https://fastapi.tiangolo.com/)
 * Database: [SQLite](https://www.sqlite.org/index.html)
@@ -32,12 +32,12 @@ Made with lots of love by:
 * Web Server: [NGINX](https://www.nginx.com/)
 * Resources: [Yelp Fusion](https://www.yelp.com/fusion) ([GraphQL Endpoint](https://www.yelp.com/developers/graphql/guides/intro))
 
-### 🌟 Front-end
+### 🌟 [Front-end](https://yumz.netlify.app/)
 
 * Framework/Library: [React.js](https://reactjs.org/)
 * Hosting: [Netfly](https://www.netlify.com/)
 
-### 📜 Documentation
+### 📜 [Documentation](https://docs.yumz.tisuela.com/)
 
 * Framework: [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)  
 * Hosting: [Github Pages](https://pages.github.com/) via [Github Actions](https://github.com/features/actions)
