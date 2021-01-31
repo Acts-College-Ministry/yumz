@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from starlette.requests import Request
-
-from .matches.matcher import Matcher
+from fastapi.middleware.cors import CORSMiddleware
 
 from .db import models,sql
 from .api_v0.users.routes import router as users_router
@@ -19,6 +18,20 @@ app = FastAPI(
     redoc_url="/docs",
     docs_url="/",
 )
+
+
+origins = [
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 

@@ -43,6 +43,33 @@ def initQuery(loc):
 	resp = client.execute(query)
 	return resp
 
+def queryCategories(loc, categories: list):
+	client = clientSetup()
+
+	categories_str = ",".join(categories)
+	# Provide a GraphQL query
+	query = gql ("""{
+		search (location: "%s", term: "food", categories: "%s", limit: 40) {
+			business{
+				name
+				id
+				categories {
+					title
+				}
+				is_closed
+				phone
+				rating
+				photos
+				url
+			}
+		}
+	}
+	""" %(loc, categories_str))
+
+	# Execute the query on the transport
+	resp = client.execute(query)
+	return resp
+
 def photos(result):
 	businesses = result['search']['business']
 	for b in businesses:
