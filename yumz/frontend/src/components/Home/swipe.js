@@ -4,9 +4,15 @@ import { Button, TextField } from '@material-ui/core';
 const SwipeBase = (props) => {
     const MAXSWIPES = 15;
     const [swipes, setSwipes] = useState(0);
-
+4
     const onClick = (event) => {
-        props.setRecommendation(true);
+        if (swipes === MAXSWIPES-1) {
+            //send stuff to api and write to user
+            props.setRecommendation(true);
+        } else {
+            //send stuff to api and write to user
+            setSwipes(swipes+1);
+        }
         event.preventDefault();
     }
     return (
