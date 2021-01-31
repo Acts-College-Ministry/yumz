@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from starlette.requests import Request
 
-from .matches.matcher import Matcher
 
 from .db import models,sql
 from .api_v0.users.routes import router as users_router
