@@ -13,7 +13,6 @@ def get_or_create(db: Session, model, **kwargs):
     if instance:
         return instance
     else:
-        print("creating...")
         instance = model(**kwargs)
         db.add(instance)
         db.commit()

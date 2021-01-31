@@ -24,7 +24,7 @@ async def create_user(request: Request, user: schemas.UserCreate, db: Session = 
 
     return db_user
 
-@router.get("/get", response_model = schemas.UserCreate)
+@router.get("/get", response_model = schemas.User)
 async def get_user(request: Request, user_id: int, db: Session=Depends(get_db)):
     db_user = crud.get_user(db, user_id)
 
@@ -35,3 +35,5 @@ async def get_users(request: Request, limit: int = 100, db: Session=Depends(get_
     users = crud.get_users(db, limit)
 
     return users
+
+
