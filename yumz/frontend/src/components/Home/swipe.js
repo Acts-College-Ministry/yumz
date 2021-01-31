@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 
 const SwipeBase = (props) => {
-    const onClick = () => {
+    const MAXSWIPES = 15;
+    const [swipes, setSwipes] = useState(0);
+
+    const onClick = (event) => {
         props.setRecommendation(true);
+        event.preventDefault();
     }
     return (
         <React.Fragment>

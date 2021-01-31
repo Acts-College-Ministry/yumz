@@ -46,7 +46,11 @@ const HomePage = (props) => {
         &&
         (recommendation)
         &&
-        <Recommendation />
+        <Recommendation 
+          setLocation={setLocation}
+          setSubmit={setSubmit}
+          setRecommendation={setRecommendation}
+        />
       }
       <Button
         variant="outlined"

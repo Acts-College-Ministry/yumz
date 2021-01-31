@@ -11,6 +11,7 @@ const LocationBase = (props) => {
     console.log(event.target.value);
     props.setLocation(event.target.value);
     props.setSubmit(true);
+    event.preventDefault();
   }
   return (
     <React.Fragment>
