@@ -41,6 +41,12 @@ def create_business(db: Session, business: schemas.BusinessCreate):
     db.refresh(db_business)
     return db_business
 
+
+def get_businesses(db: Session, limit: int = 100):
+    businesses = db.query(models.Business).limit(limit).all()
+
+    return businesses
+
 # category CRUD
 
 def create_category(db: Session, category: schemas.CategoryCreate):
@@ -53,17 +59,28 @@ def create_category(db: Session, category: schemas.CategoryCreate):
     db.refresh(db_category)
     return db_category
 
+def get_categories(db: Session, limit: int = 100):
+    categories = db.query(models.Category).limit(limit).all()
+
+    return categories
+
+
 # Likes crud
 
 def create_like(db: Session, like: schemas.LikeCreate):
     db_like = models.Like(
         user_id = like.user_id,
-        liked_image = like.image,
-        liked_business_id = like.business_id,
-        liked_category_name = like.category_name,
+        liked_image = like.liked_image,
+        liked_business_id = like.liked_business_id,
+        liked_category_name = like.liked_category_name,
     )
 
     db.add(db_like)
     db.commit()
     db.refresh(db_like)
     return db_like
+
+def get_likes(db: Session, limit: int = 100):
+    likes = db.query(models.Like).limit(limit).all()
+
+    return likes

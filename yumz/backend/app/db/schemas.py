@@ -31,8 +31,6 @@ class LikeCreate(LikeBase):
 class Like(LikeBase):
     created: datetime.datetime = None
 
-    user: UserBase = None
-
     class Config:
         orm_mode = True
 
@@ -62,7 +60,7 @@ class CategoryCreate(CategoryBase):
 
 class Category(CategoryBase):
     likes: List[Like] = []
-    
+
     class Config:
         orm_mode=True
 

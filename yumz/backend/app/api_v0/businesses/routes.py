@@ -24,3 +24,8 @@ async def create_business(request: Request, business: schemas.BusinessCreate, db
 
     return db_business
 
+@router.get("/all", response_model = List[schemas.Business])
+async def get_businesses(request: Request, limit: int = 100, db: Session=Depends(get_db)):
+    businesses = crud.get_businesses(db, limit)
+
+    return businesses

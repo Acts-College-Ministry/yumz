@@ -6,6 +6,8 @@ from .db import models,sql
 from .api_v0.users.routes import router as users_router
 from .api_v0.businesses.routes import router as businesses_router
 from .api_v0.categories.routes import router as categories_router
+from .api_v0.likes.routes import router as likes_router
+
 
 models.Base.metadata.create_all(bind=sql.engine)
 
@@ -45,7 +47,7 @@ async def about():
 
 app.include_router(
     users_router,
-    prefix="/api/v0",
+    prefix="/api/v0/users",
     tags=["users"]
 )
 
@@ -59,4 +61,10 @@ app.include_router(
     categories_router,
     prefix="/api/v0/categories",
     tags=["categories"]
+)
+
+app.include_router(
+    likes_router,
+    prefix="/api/v0/likes",
+    tags=["likes"]
 )
