@@ -1,3 +1,7 @@
+# our stuff
+db.*
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -109,6 +113,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+/yumz/backend/.env
 
 # Spyder project settings
 .spyderproject
@@ -151,3 +156,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintcache
+yumz/backend/.env
