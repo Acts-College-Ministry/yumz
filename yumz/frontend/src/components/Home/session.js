@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const SessionContext = React.createContext(null);
 
-export const withSession = Component => props => (
-    <LocationContext.Consumer>
-        {user => <Component {...props} user={user}/>}
-    </LocationContext.Consumer>
-)
+const withSession = Component => {
 
-export default SessionContext;
+        console.log(sessionStorage.getItem('user'));
+        const user = JSON.parse(sessionStorage.getItem("user"));
+
+    return (
+    <SessionContext.Consumer value={user}>
+        <Component />
+    </SessionContext.Consumer>)
+}
+
+export default withSession;
