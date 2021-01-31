@@ -112,6 +112,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+/yumz/backend/.env
 
 # Spyder project settings
 .spyderproject

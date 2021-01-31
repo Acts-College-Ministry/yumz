@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
-
-import { makeStyles } from '@material-ui/core'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'
 
 const LandingPage = (props) => {
-  const [buttonClicked, setButtonClicked] = useState(true);
+  	const [buttonClicked, setButtonClicked] = useState(true);
 
-  return (
-    <React.Fragment>
-      This is the landing page.
-    </React.Fragment>
-  )
+	render() {
+		return (
+			<header id="header">
+				<div className="intro">
+					<div className="overlay">
+						<div className="container">
+							<div className="row">
+								<div className="col-md-8 col-md-offset-2 intro-text">
+									<h1> hola
+
+									</h1>
+									<a href="/home"> </a>
+		);
+	}
 }
 
 export default LandingPage;
