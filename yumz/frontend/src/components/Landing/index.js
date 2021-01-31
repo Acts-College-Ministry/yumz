@@ -10,8 +10,7 @@ import * as ROUTES from '../../constants/routes';
 
 const useStyles = makeStyles({
   root: {
-    
-    maxWidth: 2150,
+    minWidth: 275,
   },
   bullet: {
     display: 'inline-block',
@@ -46,11 +45,15 @@ export default function LandingPage() {
 	const classes = makeStyles();
 	return(
 		<Grid container direction="column" alignItems="center" justify="center" style={{ minHeight: '100vh' }}>
-			<Card className={classes.root}>
-				<CardContent>
-			    	<img className={classes.media} src="img/yumz.jpg"></img>
-			    </CardContent>
-			</Card>
+      <Card className={classes.root} justify = "center">
+        <CardContent align = "center">
+          <img 
+          className={classes.media} 
+          src="img/yumz.jpg"
+          style={{width: '50%', height: '25%'}}
+          ></img>
+        </CardContent>
+      </Card>
 			<Link underline='none' to={'/home'} style={{ textDecoration: 'none' }}>
 				<Card className={classes.root}>
 			    	<CardContent className={classes.nopad}>
