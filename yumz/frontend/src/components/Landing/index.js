@@ -10,7 +10,8 @@ import * as ROUTES from '../../constants/routes';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    
+    maxWidth: 2150,
   },
   bullet: {
     display: 'inline-block',
