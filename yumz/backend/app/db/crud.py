@@ -62,18 +62,23 @@ def create_business(db: Session, business: schemas.BusinessCreate):
     return db_business
 
 def create_or_get_business(db: Session, business: schemas.BusinessCreate):
-    business = get_or_create(
-        db, 
-        models.Business, 
-        id = business.id,
-        name = business.name,
-        url = business.url,
-        phone = business.phone,
-        is_closed = business.is_closed,
-        rating = business.rating,
-    )
 
-    return business
+    instance = db.query(models.Business).filter_by(id = business.id).first()
+    if instance:
+        return instance
+    else:
+        instance = models.Business(
+            id = business.id,
+            name = business.name,
+            url = business.url,
+            phone = business.phone,
+            is_closed = business.is_closed,
+            rating = business.rating,
+        )
+        db.add(instance)
+        db.commit()
+        return instance
+
 
 
 def get_businesses(db: Session, limit: int = 100):
